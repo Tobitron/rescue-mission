@@ -1,2 +1,21 @@
 <h1><%= @question.title %></h1>
 <p><%= @question.description %></p>
+
+<div class="large-12">
+  <h1>New Drink</h1>
+  <%= form_for [@question, @answer] do |f| %>
+    <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.submit "Add Answer" %>
+<%- end -%>
+<% binding.pry %>
+
+
+
+
+
+
+
+
+
+
