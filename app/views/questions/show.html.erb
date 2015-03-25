@@ -2,13 +2,12 @@
 <p><%= @question.description %></p>
 
 <div class="large-12">
-  <h1>New Drink</h1>
+  <h1>New Answer</h1>
   <%= form_for [@question, @answer] do |f| %>
     <%= f.label :description %>
   <%= f.text_area :description %>
-  <%= f.submit "Add Answer" %>
+  <%= f.submit "Submit" %>
 <%- end -%>
-<% binding.pry %>
 
 
 
