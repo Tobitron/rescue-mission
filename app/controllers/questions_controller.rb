@@ -6,10 +6,9 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new
-    @answer_show = Answer.where("question_id = #{params[:id]}")
-
+    @answer_show = Answer.where("question_id = #{params[:id]}").order(created_at: :desc)
     if params.include?('question_id')
-      @answer_show = Answer.where("question_id = '#{params[:id]}'")
+      @answer_show = Answer.where("question_id = '#{params[:id]}'").order(created_at: :desc)
     end
   end
 
