@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   def new
-    @answers = Answer.new(question_id: 1,description: "hey world")
+    @answers = Answer.new
   end
 
   def create
@@ -14,4 +14,21 @@ class AnswersController < ApplicationController
     end
   end
 
+  def update
+    @question = Question.find(params[:question_id])
+    @answer = Answer.find(params[:id])
+    if @answer.update_attributes(answer_params)
+      flash[:notice] = 'Answer featured!'
+      redirect_to question_path(@question)
+    else
+      render :'questions/show'
+    end
+
+  end
+
+
+  protected
+  def answer_params
+    params.require(:answer).permit(:description, :featured)
+  end
 end

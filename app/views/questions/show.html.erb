@@ -1,28 +1,31 @@
+<br>
+
+<%= link_to 'Edit', [:edit, @question] %>
+
 <h1><%= @question.title %></h1>
 <p><%= @question.description %></p>
+<%= link_to "Delete", @question, method: :delete %>
 
 <div class="large-12">
   <h1>New Answer</h1>
   <%= form_for [@question, @answer] do |f| %>
     <%= f.label :description %>
-  <%= f.text_area :description %>
-  <%= f.submit "Submit" %>
-<%- end -%>
+    <%= f.text_area :description %>
+    <%= f.submit "Submit" %>
+  <% end %>
 
 
-<div>
-  <h1> Answers: </h1>
+  <div>
+    <h1> Answers: </h1>
     <% @answer_show.each do |answer| %>
       <div>
-      <%= answer.description %>
-    </div>
-  <% end %>
+        <%= answer.description %>
+        <%= form_for [@question, answer] do |f| %>
+          <%= f.label :featured %>
+          <%= f.check_box(:featured) %>
+          <%= f.submit "Submit" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-
-
-
-
-
-
-
-
+</div>
